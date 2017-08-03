@@ -27,4 +27,4 @@ test:
     - ./gradlew --full-stacktrace check
   post:
     - mkdir -p $CIRCLE_ARTIFACTS/junit/
-    - find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} $CIRCLE_ARTIFACTS/junit/ \;
+    - find . -type f -regex ".*/build/reports/tests/.*xml" -exec cp {} $CIRCLE_ARTIFACTS/junit/ \;
