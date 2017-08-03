@@ -3,17 +3,19 @@ machine:
     version: oraclejdk8
   timezone: Asia/Tokyo
   environment:
-    GRADLE_OPTS: -Xmx4G
+    GRADLE_OPTS: -Xmx4G -Dorg.gradle.daemon=true
   post:
     - sudo service mysql stop
     - sudo service postgresql stop
 
 checkout:
   post:
-    - chmod +x ./gradlew
+    - gradle wrapper
+    # - chmod +x ./gradlew
 
 dependencies:
   override:
+    - gradle wrapper && chmod +x ./gradlew
     - ./gradlew testClasses --stacktrace
 
 test:
