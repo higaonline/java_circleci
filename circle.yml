@@ -8,9 +8,12 @@ machine:
     - sudo service mysql stop
     - sudo service postgresql stop
 
+general:
+  artifacts:
+    - "app/build/reports/tests"
+
 checkout:
   post:
-    - gradle wrapper
     # - chmod +x ./gradlew
 
 dependencies:
