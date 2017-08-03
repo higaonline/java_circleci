@@ -15,3 +15,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile 'org.assertj:assertj-core:3.6.1'
 }
+task copyCIArtifacts << { // because why not, doubleshift and nested copy (intuitive, isn't it?)
+    if (System.getenv("CIRCLECI").equals("true")) {
+        copy {
+            from(file('build/libs/').listFiles() + file('build/distributions/').listFiles())
+            into System.getenv('CIRCLE_ARTIFACTS')
+        }
+    }
+}
